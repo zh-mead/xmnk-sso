@@ -93,7 +93,7 @@ class SsoClientApiController extends Controller
     public function logout(Request $request)
     {
         $data = $this->validateData($request, [
-            'back' => 'required|string',
+            'back' => 'sometimes|nullable|string',
             'loginId' => 'required|string',
         ], [
             'back' => '重定向地址',
