@@ -1,0 +1,17 @@
+{
+    "name": "zh-mead\/xmnk-sso",
+    "description": "Package description here.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mead",
+            "email": "751066209@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "ZhMead\\XmnkSso\\": "src"
+        }
+    }
+}
