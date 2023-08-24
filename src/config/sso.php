@@ -53,7 +53,20 @@ return [
      */
     'client' => 'ssp-client3-nosdk',
 
-    'userSyncAppCallback' => \App\Http\Controllers\Admin\Base\AuthController::class,
+    /**
+     * 登录服务所在类
+     * eg:
+     *  public function userSyncApp($userTemp)
+     *  {
+     *      # $userTemp为用户登录数据：其中username为唯一账号
+     *      # $token:子系统的token
+     *      # $admin:子系统的用户
+     *      # $permissions：子系统的权限
+     *      return [$token, $admin, $permissions];
+     *  }
+     *
+     */
+    'userSyncAppCallback' => '',
 
     'authCacheTime' => 2419200,
 ];

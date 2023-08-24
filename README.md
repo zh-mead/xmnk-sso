@@ -2,27 +2,28 @@
 
 <p align="center"> .</p>
 
-
 ## Installing
+
+* 安装扩展包
 
 ```shell
 $ composer require zh-mead/xmnk-sso -vvv
 ```
 
-## Usage
+* 复制配置文件到配置目录下
 
-TODO
+> 将配置文件复制到config目录下的sso.php下
 
-## Contributing
+```php
+$ composer require zh-mead/xmnk-sso -vvv
+```
 
-You can contribute in one of three ways:
+* 注册服务
 
-1. File bug reports using the [issue tracker](https://github.com/zh-mead/xmnk-sso/issues).
-2. Answer questions or fix bugs on the [issue tracker](https://github.com/zh-mead/xmnk-sso/issues).
-3. Contribute new features or update the wiki.
-
-_The code contribution process is not very formal. You just need to make sure that you follow the PSR-0, PSR-1, and PSR-2 coding guidelines. Any new code contributions must be accompanied by unit tests where applicable._
-
-## License
-
-MIT
+```php
+#在bootstrap/app.php文件下添加一下代码
+...
+$app->register(\ZhMead\XmnkSso\SsoServiceProvider::class);
+...
+$app->configure('sso');
+```
