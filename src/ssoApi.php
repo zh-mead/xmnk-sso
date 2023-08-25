@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+$prefix = config('routePrefix', 'base/sso');
+
 Route::group([
     'namespace' => 'ZhMead\XmnkSso\Controllers',
-    'prefix' => 'base/sso'
+    'prefix' => $prefix
 ], function () {
     Route::post('/getSsoAuthUrl', 'SsoClientApiController@getSsoAuthUrl');
     Route::post('/doLoginByTicket', 'SsoClientApiController@doLoginByTicket');

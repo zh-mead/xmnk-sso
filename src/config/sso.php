@@ -25,6 +25,8 @@ return [
      */
     'secretkey' => '',
 
+    'routePrefix' => 'base/sso',
+
     /**
      * SSO-Server端 统一认证地址
      */

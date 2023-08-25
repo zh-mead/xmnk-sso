@@ -3,6 +3,7 @@
 namespace ZhMead\XmnkSso;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class SsoServiceProvider extends ServiceProvider
 {
@@ -18,7 +19,6 @@ class SsoServiceProvider extends ServiceProvider
         }
 
         $this->mergeConfigFrom($source, 'sso');
-
 
         $this->loadRoutesFrom(__DIR__ . '/ssoApi.php');
     }
