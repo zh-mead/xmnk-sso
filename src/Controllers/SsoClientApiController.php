@@ -93,21 +93,21 @@ class SsoClientApiController extends Controller
     public function logout(Request $request)
     {
         $data = $this->validateData($request, [
-            'back' => 'sometimes|nullable|string',
+            'back' => 'required|string',
             'loginId' => 'required|string',
         ], [
             'back' => '重定向地址',
             'loginId' => '登陆者id',
         ]);
+
+        if (!isset($data['back'])) $data['back'] = null;
+
         // 如果未登录，则无需注销
         //使用redis作为缓存
         $value = Cache::get('sso:user:id:' . $data['loginId'], null);
         if (empty($value)) {
             //重定向页面
-            if (!empty($data)) {
-                return redirect($data['back'] == null ? "/" : $data['back']);
-            }
-            return Response::noContent();
+            return redirect($data['back']);
         }
         // 调用 sso-server 认证中心单点注销API
         $timestamp = Carbon::now()->getPreciseTimestamp(3);// 时间戳
@@ -126,11 +126,8 @@ class SsoClientApiController extends Controller
             //删除缓存
             Cache::forget('sso:user:id:' . $data['loginId']);
             // 如果指定了 back 地址，则重定向，否则返回 JSON 信息
-            if (!empty($data) && !empty($data['back'])) {
-                //重定向页面
-                return redirect($data['back']);
-            }
-            return Response::noContent();
+            //重定向页面
+            return redirect($data['back']);
         } else {
             // 将 sso-server 回应的消息作为异常抛出
             return Response::fail($result['msg']);
