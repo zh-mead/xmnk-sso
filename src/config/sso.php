@@ -25,6 +25,9 @@ return [
      */
     'secretkey' => '',
 
+    /**
+     * 请求前缀
+     */
     'routePrefix' => 'base/sso',
 
     /**

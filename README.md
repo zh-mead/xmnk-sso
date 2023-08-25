@@ -40,6 +40,11 @@ $ composer require zh-mead/xmnk-sso -vvv
      * 接口调用秘钥
      */
     'secretkey' => '',
+    
+     /**
+     * 请求前缀
+     */
+    'routePrefix' => 'base/sso',
 
     /**
      * SSO-Server端 统一认证地址
