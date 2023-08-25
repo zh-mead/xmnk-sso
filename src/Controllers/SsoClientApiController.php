@@ -100,8 +100,6 @@ class SsoClientApiController extends Controller
             'loginId' => '登陆者id',
         ]);
 
-        if (!isset($data['back'])) $data['back'] = null;
-
         // 如果未登录，则无需注销
         //使用redis作为缓存
         $value = Cache::get('sso:user:id:' . $data['loginId'], null);
