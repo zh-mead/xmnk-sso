@@ -21,4 +21,5 @@ Route::group([
     Route::post('/getAppLogo', 'SsoClientApiController@getAppLogo');
     Route::post('/createTicket', 'SsoClientApiController@createTicket');
     Route::post('/getClientVisit', 'SsoClientApiController@getClientVisit');
+    Route::post('/getMainClientUrl', 'SsoClientApiController@getMainClientUrl');
 });

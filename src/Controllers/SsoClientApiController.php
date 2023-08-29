@@ -574,4 +574,23 @@ class SsoClientApiController extends Controller
             return Response::fail($result['msg']);
         }
     }
+
+    /**
+     * 获取主应用Url
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     */
+    public function getMainClientUrl(Request $request)
+    {
+        $url = config('sso.saTokenIP') . config('sso.getMainClientUrl');
+        $result = $this->request_post($url);
+
+        // 校验响应状态码，200 代表成功
+        if ($result['code'] == 200) {
+            return Response::success($result['data']);
+        } else {
+            // 将 sso-server 回应的消息作为异常抛出
+            return Response::fail($result['msg']);
+        }
+    }
 }

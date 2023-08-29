@@ -97,6 +97,10 @@ return [
      */
     'getClientVisit' => '/sso/clientVisit',
 
+    /**
+     * 获取主应用Url
+     */
+    'getMainClientUrl' => '/sso/getMainClientUrl',
 
     /**
      * 当前 client 的标识，可为 null
