@@ -15,4 +15,10 @@ Route::group([
     Route::post('/checkSaTokenLoginId', 'SsoClientApiController@checkSaTokenLoginId');
     Route::post('/updatePW', 'SsoClientApiController@updatePW');
     Route::post('/updateUser', 'SsoClientApiController@updateUser');
+
+    Route::post('/getClientList', 'SsoClientApiController@getClientList');
+    Route::post('/getLogin', 'SsoClientApiController@getLogin');
+    Route::post('/getAppLogo', 'SsoClientApiController@getAppLogo');
+    Route::post('/createTicket', 'SsoClientApiController@createTicket');
+    Route::post('/getClientVisit', 'SsoClientApiController@getClientVisit');
 });

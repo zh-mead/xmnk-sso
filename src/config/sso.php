@@ -73,6 +73,32 @@ return [
     'updateUserUrl' => '/ssp/listen/user/update',
 
     /**
+     * 查询应用列表
+     */
+    'getClientList' => '/SysClient/getClientList',
+
+    /**
+     * 登录
+     */
+    'getLogin' => '/SysUserAcc/doLogin',
+
+    /**
+     * 创建Ticket
+     */
+    'createTicket' => '/sso/createTicket',
+
+    /**
+     * 获取全局logo-背景图配置
+     */
+    'getAppLogo' => '/SpConfig/getAppLogo',
+
+    /**
+     * 绑定用户与应用的关系
+     */
+    'getClientVisit' => '/sso/clientVisit',
+
+
+    /**
      * 当前 client 的标识，可为 null
      */
     'client' => 'ssp-client3-nosdk',
