@@ -61,7 +61,6 @@ return [
      */
     'checkSaToken' => '/sso/getList',
 
-
     /***
      * 自己修改密码
      */
