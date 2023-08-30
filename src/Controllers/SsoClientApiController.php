@@ -474,64 +474,6 @@ class SsoClientApiController extends Controller
     }
 
     /**
-     * 登录接口
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function getLogin(Request $request)
-    {
-        $data = $this->validateData($request, [
-            'name' => 'required|string',
-            'pwd' => 'required|string',
-        ], [
-            'name' => '账号',
-            'pwd' => '密码',
-        ]);
-
-        $url = config('sso.saTokenIP') . config('sso.getLogin') .
-            "?name=" . $data['name'] .
-            "&pwd=" . $data['pwd'];
-        $result = $this->request_post($url);
-
-        // 校验响应状态码，200 代表成功
-        if ($result['code'] == 200) {
-            return Response::success($result);
-        } else {
-            // 将 sso-server 回应的消息作为异常抛出
-            return Response::fail($result['msg']);
-        }
-    }
-
-    /**
-     * 创建ticket
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function createTicket(Request $request)
-    {
-        $data = $this->validateData($request, [
-            'loginId' => 'required|string',
-        ], [
-            'loginId' => '登陆者id',
-        ]);
-
-        $url = config('sso.saTokenIP') . config('sso.createTicket') .
-            "?loginId=" . $data['loginId'] .
-            "&client=" . config('sso.client');
-        $result = $this->request_post($url);
-
-        // 校验响应状态码，200 代表成功
-        if ($result['code'] == 200) {
-            return Response::success($result['data']);
-        } else {
-            // 将 sso-server 回应的消息作为异常抛出
-            return Response::fail($result['msg']);
-        }
-    }
-
-    /**
      * 获取全局logo-背景图配置
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
@@ -569,25 +511,6 @@ class SsoClientApiController extends Controller
         // 校验响应状态码，200 代表成功
         if ($result['code'] == 200) {
             return Response::success('', $result['msg']);
-        } else {
-            // 将 sso-server 回应的消息作为异常抛出
-            return Response::fail($result['msg']);
-        }
-    }
-
-    /**
-     * 获取主应用Url
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
-     */
-    public function getMainClientUrl(Request $request)
-    {
-        $url = config('sso.saTokenIP') . config('sso.getMainClientUrl');
-        $result = $this->request_post($url);
-
-        // 校验响应状态码，200 代表成功
-        if ($result['code'] == 200) {
-            return Response::success($result['data']);
         } else {
             // 将 sso-server 回应的消息作为异常抛出
             return Response::fail($result['msg']);
