@@ -88,6 +88,11 @@ return [
     'getClientVisit' => '/sso/clientVisit',
 
     /**
+     * 创建Ticket
+     */
+    'createTicket' => '/sso/createTicket',
+
+    /**
      * 当前 client 的标识，可为 null
      */
     'client' => 'ssp-client3-nosdk',

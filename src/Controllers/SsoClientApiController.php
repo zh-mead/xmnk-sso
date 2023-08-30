@@ -516,4 +516,32 @@ class SsoClientApiController extends Controller
             return Response::fail($result['msg']);
         }
     }
+
+    /**
+     * 创建ticket
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function createTicket(Request $request)
+    {
+        $data = $this->validateData($request, [
+            'loginId' => 'required|string',
+        ], [
+            'loginId' => '登陆者id',
+        ]);
+
+        $url = config('sso.saTokenIP') . config('sso.createTicket') .
+            "?loginId=" . $data['loginId'] .
+            "&client=" . config('sso.client');
+        $result = $this->request_post($url);
+
+        // 校验响应状态码，200 代表成功
+        if ($result['code'] == 200) {
+            return Response::success($result['data']);
+        } else {
+            // 将 sso-server 回应的消息作为异常抛出
+            return Response::fail($result['msg']);
+        }
+    }
 }
