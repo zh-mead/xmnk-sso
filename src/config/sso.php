@@ -80,7 +80,7 @@ return [
     /**
      * 获取全局logo-背景图配置
      */
-    'getAppLogo' => '/SpConfig/getAppLogo',
+    'getQuitUrl' => '/SpConfig/getQuitUrl',
 
     /**
      * 绑定用户与应用的关系

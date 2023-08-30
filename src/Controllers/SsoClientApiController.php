@@ -478,9 +478,9 @@ class SsoClientApiController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
      */
-    public function getAppLogo(Request $request)
+    public function getQuitUrl(Request $request)
     {
-        $url = config('sso.saTokenIP') . config('sso.getAppLogo');
+        $url = config('sso.saTokenIP') . config('sso.getQuitUrl');
         $result = $this->request_post($url);
 
         // 校验响应状态码，200 代表成功

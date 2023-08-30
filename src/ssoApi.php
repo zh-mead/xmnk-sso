@@ -17,6 +17,6 @@ Route::group([
     Route::post('/updateUser', 'SsoClientApiController@updateUser');
 
     Route::post('/getClientList', 'SsoClientApiController@getClientList');
-    Route::post('/getAppLogo', 'SsoClientApiController@getAppLogo');
+    Route::post('/getQuitUrl', 'SsoClientApiController@getQuitUrl');
     Route::post('/getClientVisit', 'SsoClientApiController@getClientVisit');
 });
