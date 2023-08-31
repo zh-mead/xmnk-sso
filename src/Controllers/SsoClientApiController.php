@@ -192,7 +192,7 @@ class SsoClientApiController extends Controller
         if ($result['code'] == null || $result['code'] != 200) {
             return Response::success('', '用户没有权限(令牌失效、用户名、密码错误、登录过期)', 598);
         } else {
-            if (count($result['data']) === 0) return Response::success('', '用户没有权限(令牌失效、用户名、密码错误、登录过期)', 598);
+            if (count($result['data']) === 0 || !array_key_exists('userId', $result['data'][0])) return Response::success('', '用户没有权限(令牌失效、用户名、密码错误、登录过期)', 598);
             return Response::success($result['data'][0]['userId']);
         }
     }
@@ -214,8 +214,10 @@ class SsoClientApiController extends Controller
             'password' => '密码',
         ]);
 
-        $data = '{"id": ' . $data['loginId'] . ',
-                "password" :' . '"' . $data['password'] . '"' . '}';
+        $data = json_encode([
+            'id' => $data['loginId'],
+            'password' => $data['password'],
+        ]);
 
         $timestamp = Carbon::now()->getPreciseTimestamp(3);// 时间戳
         $nonce = $this->getRandomString(32);        // 随机字符串
@@ -246,12 +248,18 @@ class SsoClientApiController extends Controller
         $data = $this->validateData($request, [
             'username' => 'required|string',
             'password' => 'required|string',
+            'loginId' => 'required|string',
         ], [
             'username' => '账号',
             'password' => '密码',
+            'loginId' => '登陆者id',
         ]);
-        $data = '{"username": ' . $data['username'] . ',
-                "password" :' . '"' . $data['password'] . '"' . '}';
+
+        $data = json_encode([
+            'username' => $data['username'],
+            'password' => $data['password'],
+            'loginId' => $data['loginId'],
+        ]);
 
         $timestamp = Carbon::now()->getPreciseTimestamp(3);// 时间戳
         $nonce = $this->getRandomString(32);        // 随机字符串
