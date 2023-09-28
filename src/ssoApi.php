@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-$prefix = config('sso.routePrefix', config('sso.ssoPrefix', 'base/sso'));
+$prefix = config('sso.routePrefix', 'base/sso');
 Route::group([
     'namespace' => 'ZhMead\XmnkSso\Controllers',
     'prefix' => $prefix
