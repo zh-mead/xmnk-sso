@@ -21,6 +21,11 @@ return [
     'userSyncAppCallback' => '',
 
     /**
+     * 域名前坠
+     */
+    'ssoPrefix' => 'base/sso',
+
+    /**
      * 接口调用秘钥
      */
     'secretkey' => '',
